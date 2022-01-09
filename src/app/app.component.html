@@ -3,13 +3,15 @@
     <li class="page-item" [ngClass]="currentPage === 0 ? 'disabled' : ''">
       <a (click)="currentPage = currentPage - 1" class="page-link">Prev</a>
     </li>
-    <li
-      class="page-item"
-      [ngClass]="i === currentPage ? 'active' : ''"
-      *ngFor="let image of images; let i = index"
-    >
-      <a (click)="currentPage = i" class="page-link"> {{ i + 1 }} </a>
-    </li>
+    <ng-container *ngFor="let image of images; let i = index">
+      <li
+        class="page-item"
+        [ngClass]="i === currentPage ? 'active' : ''"
+        *ngIf="checkWindowInex(i)"
+      >
+        <a (click)="currentPage = i" class="page-link"> {{ i + 1 }} </a>
+      </li>
+    </ng-container>
     <li
       class="page-item"
       [ngClass]="currentPage === images.length - 1 ? 'disabled' : ''"
@@ -18,3 +20,12 @@
     </li>
   </ul>
 </nav>
+<div>
+  <h4>{{ images[currentPage].title }}</h4>
+  <img [src]="images[currentPage].url" />
+</div>
+<!-- <div [ngSwitch]="(currentPage + 1) % 2">
+  <div *ngSwitchCase="0">Current page is even</div>
+  <div *ngSwitchCase="!0">Current page is odd</div>
+  <div *ngSwitchDefault="">Current page is unknown</div>
+</div> -->
