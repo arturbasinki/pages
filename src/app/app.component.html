@@ -1,12 +1,12 @@
 <nav>
   <ul class="pagination">
-    <li class="page-item" [ngClass]="currentPage === 0 ? 'disabled' : ''">
+    <li class="page-item" [appClass]="{ disabled: currentPage === 0 }">
       <a (click)="currentPage = currentPage - 1" class="page-link">Prev</a>
     </li>
     <ng-container *ngFor="let image of images; let i = index">
       <li
         class="page-item"
-        [ngClass]="i === currentPage ? 'active' : ''"
+        [appClass]="{ active: i === currentPage }"
         *ngIf="checkWindowInex(i)"
       >
         <a (click)="currentPage = i" class="page-link"> {{ i + 1 }} </a>
@@ -14,14 +14,16 @@
     </ng-container>
     <li
       class="page-item"
-      [ngClass]="currentPage === images.length - 1 ? 'disabled' : ''"
+      [appClass]="{ disabled: currentPage === images.length - 1 }"
     >
       <a (click)="currentPage = currentPage + 1" class="page-link">Next</a>
     </li>
   </ul>
 </nav>
 <div>
-  <h4>{{ images[currentPage].title }}</h4>
+  <h4>
+    {{ images[currentPage].title }}
+  </h4>
   <img [src]="images[currentPage].url" />
 </div>
 <!-- <div [ngSwitch]="(currentPage + 1) % 2">

@@ -76,12 +76,12 @@ export class AppComponent {
   ];
   checkWindowInex(index: number) {
     this.tmp = Math.abs(this.currentPage - index) < 3;
-    console.log(
-      `current page : ${this.currentPage}
-       index : ${index}
-      `
-    );
-    console.log(this.tmp);
+    // console.log(
+    //   `current page : ${this.currentPage}
+    //    index : ${index}
+    //   `
+    // );
+    // console.log(this.tmp);
     return this.tmp;
   }
 }
